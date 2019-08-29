@@ -1,0 +1,9 @@
+use_frameworks!
+
+target 'KIFTarget' do
+
+end
+
+target 'Acceptance Tests' do
+    pod 'KIF', :configurations => ['Debug']
+end

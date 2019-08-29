@@ -7,13 +7,27 @@
 //
 
 #import "ViewController.h"
+#import "YTRender.h"
 
 @implementation ViewController
-
+{
+    YTRender *_render;
+    MTKView *_mtkView;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    // Do any additional setup after loading the view.
+    // Set the view to use the default device
+    _mtkView = [[MTKView alloc]initWithFrame:self.view.frame];
+    [self.view addSubview:_mtkView];
+    
+    _mtkView.device = MTLCreateSystemDefaultDevice();
+    
+    _render = [[YTRender alloc]initWithMetalKitView:_mtkView];
+    
+    [_render mtkView:_mtkView drawableSizeWillChange:_mtkView.drawableSize];
+    
+    _mtkView.delegate = _render;
 }
 
 
